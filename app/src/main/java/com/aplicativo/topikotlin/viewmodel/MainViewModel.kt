@@ -2,24 +2,23 @@ package com.aplicativo.topikotlin.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.aplicativo.topikotlin.api.Repository
-import com.aplicativo.topikotlin.model.User
-import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
+import androidx.lifecycle.viewModelScope
+import com.aplicativo.topikotlin.api.RetrofitInstance
+import com.aplicativo.topikotlin.model.Lista
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-@HiltViewModel
-class MainViewModel @Inject constructor(private val repository: Repository): ViewModel(){
+class MainViewModel : ViewModel(){
 
-        lateinit var listUser : MutableLiveData<List<User>>
+    val itemList = MutableLiveData<Lista>()
 
-    init{
-        listUser = MutableLiveData()
-    }
+    fun getList() : MutableLiveData<Lista> = itemList
 
-    fun getUser() : MutableLiveData<List<User>>{
-        return listUser
-    }
-    fun loadListUser(){
-        repository.Apicall("ny", listUser)
+    fun loadUser(){
+        viewModelScope.launch(Dispatchers.IO){
+            val retroInstance = RetrofitInstance.getInstance
+            val response = retroInstance.getAllUser("ny")
+            itemList.postValue(response)
+        }
     }
 }

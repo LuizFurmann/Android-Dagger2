@@ -1,28 +1,21 @@
 package com.aplicativo.topikotlin
 
-import android.graphics.drawable.AnimationDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplicativo.topikotlin.adapter.UsuarioAdapter
 import com.aplicativo.topikotlin.databinding.ActivityMainBinding
-import com.aplicativo.topikotlin.model.User
 import com.aplicativo.topikotlin.viewmodel.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var usuarioAdapter: UsuarioAdapter
-    val itemList : ArrayList<User> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,25 +26,28 @@ class MainActivity : AppCompatActivity() {
         initViewModel()
     }
 
+    //RecyclerView
     private fun initRecyclerView() {
         binding.rvUsuarios.layoutManager = LinearLayoutManager(this)
         usuarioAdapter = UsuarioAdapter()
         binding.rvUsuarios.adapter = usuarioAdapter
     }
 
+    //ViewModel
     private fun initViewModel() {
         val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getUser().observe(this, Observer {
+        viewModel.getList().observe(this, {
             if(it != null) {
-                usuarioAdapter.setlistData(it)
+                usuarioAdapter.setlistData(it.items)
                 usuarioAdapter.notifyDataSetChanged()
             } else {
                 Toast.makeText(this, "Something is wrong with connection!", Toast.LENGTH_SHORT).show()
             }
         })
-        viewModel.loadListUser()
+        viewModel.loadUser()
     }
 
+    //ToopBar
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
         val search = menu.findItem(R.id.search)

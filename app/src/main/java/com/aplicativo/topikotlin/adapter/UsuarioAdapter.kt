@@ -6,8 +6,8 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.aplicativo.topikotlin.databinding.CardItemBinding
-import com.bumptech.glide.Glide
 import com.aplicativo.topikotlin.model.User
+import com.bumptech.glide.Glide
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -23,12 +23,12 @@ class UsuarioAdapter : RecyclerView.Adapter<UsuarioAdapter.MyViewHolder>(), Filt
         this.filteredListItems.addAll(listUser)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UsuarioAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view  = CardItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: UsuarioAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(listUser?.get(position)!!)
     }
 
