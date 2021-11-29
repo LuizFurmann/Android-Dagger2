@@ -1,20 +1,31 @@
 package com.aplicativo.topikotlin.api
 
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
-class RetrofitInstance {
+@Module
+@InstallIn(SingletonComponent::class)
+object RetrofitInstance {
 
-    companion object{
-        val BASE_URL = "https://api.github.com/search/"
+    val BASE_URL = "https://api.github.com/search/"
 
-        fun getRetrofitInstance(): Retrofit {
-            return Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-        }
+    @Singleton
+    @Provides
+    fun getInstance(retrofit: Retrofit): RetrofitService {
+        return retrofit.create(RetrofitService::class.java)
+    }
 
-        val getInstance = getRetrofitInstance().create(RetrofitService::class.java)
+    @Singleton
+    @Provides
+    fun getService(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }

@@ -5,10 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aplicativo.topikotlin.api.RetrofitInstance
 import com.aplicativo.topikotlin.model.Lista
+import com.aplicativo.topikotlin.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel : ViewModel(){
+@HiltViewModel
+class MainViewModel @Inject constructor(private val repository: MainRepository): ViewModel(){
 
     val itemList = MutableLiveData<Lista>()
 
@@ -16,8 +20,7 @@ class MainViewModel : ViewModel(){
 
     fun loadUser(){
         viewModelScope.launch(Dispatchers.IO){
-            val retroInstance = RetrofitInstance.getInstance
-            val response = retroInstance.getAllUser("ny")
+            val response = repository.ApiCall("ny")
             itemList.postValue(response)
         }
     }
