@@ -1,16 +1,14 @@
-package com.aplicativo.topikotlin.api
+package com.aplicativo.topikotlin.dagger.module
 
+import com.aplicativo.topikotlin.api.RetrofitService
 import dagger.Module
 import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(SingletonComponent::class)
-object RetrofitInstance {
+class RetrofitModule {
 
     val BASE_URL = "https://api.github.com/search/"
 

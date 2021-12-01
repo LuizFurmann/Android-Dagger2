@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplicativo.topikotlin.adapter.UsuarioAdapter
 import com.aplicativo.topikotlin.databinding.ActivityMainBinding
 import com.aplicativo.topikotlin.viewmodel.MainViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -46,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Something is wrong with connection!", Toast.LENGTH_SHORT).show()
             }
         })
-        viewModel.loadUser()
+        viewModel.loadListUser()
     }
 
     //ToopBar
