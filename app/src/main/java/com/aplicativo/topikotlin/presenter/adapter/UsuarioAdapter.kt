@@ -6,7 +6,7 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.aplicativo.topikotlin.databinding.CardItemBinding
-import com.aplicativo.topikotlin.model.User
+import com.aplicativo.topikotlin.data.model.User
 import com.bumptech.glide.Glide
 import java.util.*
 import kotlin.collections.ArrayList

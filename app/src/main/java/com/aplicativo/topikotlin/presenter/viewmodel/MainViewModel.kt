@@ -5,7 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aplicativo.topikotlin.MainApplication
-import com.aplicativo.topikotlin.model.Lista
+import com.aplicativo.topikotlin.data.model.Lista
 import com.aplicativo.topikotlin.data.MainRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
