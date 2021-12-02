@@ -1,6 +1,6 @@
-package com.aplicativo.topikotlin.repository
+package com.aplicativo.topikotlin.data
 
-import com.aplicativo.topikotlin.api.RetrofitService
+import com.aplicativo.topikotlin.data.api.RetrofitService
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(private val getServiceInstance: RetrofitService){

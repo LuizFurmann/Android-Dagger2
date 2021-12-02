@@ -1,4 +1,4 @@
-package com.aplicativo.topikotlin.api
+package com.aplicativo.topikotlin.data.api
 
 import com.aplicativo.topikotlin.model.Lista
 import retrofit2.http.GET

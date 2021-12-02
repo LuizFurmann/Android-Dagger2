@@ -1,4 +1,4 @@
-package com.aplicativo.topikotlin.adapter
+package com.aplicativo.topikotlin.presenter.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

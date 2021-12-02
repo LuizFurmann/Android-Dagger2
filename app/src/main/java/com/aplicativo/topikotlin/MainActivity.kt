@@ -8,9 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.aplicativo.topikotlin.adapter.UsuarioAdapter
+import com.aplicativo.topikotlin.presenter.adapter.UsuarioAdapter
 import com.aplicativo.topikotlin.databinding.ActivityMainBinding
-import com.aplicativo.topikotlin.viewmodel.MainViewModel
+import com.aplicativo.topikotlin.presenter.viewmodel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
 

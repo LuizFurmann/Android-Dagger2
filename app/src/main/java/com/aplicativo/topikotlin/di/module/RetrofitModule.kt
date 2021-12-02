@@ -1,6 +1,6 @@
-package com.aplicativo.topikotlin.dagger.module
+package com.aplicativo.topikotlin.di.module
 
-import com.aplicativo.topikotlin.api.RetrofitService
+import com.aplicativo.topikotlin.data.api.RetrofitService
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
