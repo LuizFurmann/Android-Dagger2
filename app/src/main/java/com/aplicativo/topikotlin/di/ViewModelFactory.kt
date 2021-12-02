@@ -22,15 +22,3 @@ class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Cl
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
 @MapKey
 internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
-
-@Module
-abstract class ViewModelModule {
-
-    @Binds
-    internal abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    internal abstract fun postListViewModel(viewModel: MainViewModel): ViewModel
-}
