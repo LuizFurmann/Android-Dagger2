@@ -10,8 +10,8 @@ data class User(
     val forks: String,
     val full_name: String,
     val login: String,
-    val stargazers_count: String
-    , val owner: Owner
+    val stargazers_count: String,
+    val owner: Owner
     )
 
 data class Owner(

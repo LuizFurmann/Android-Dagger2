@@ -14,13 +14,13 @@ class RetrofitModule {
 
     @Singleton
     @Provides
-    fun getInstance(retrofit: Retrofit): RetrofitService {
+    fun providerRetrofit(retrofit: Retrofit): RetrofitService {
         return retrofit.create(RetrofitService::class.java)
     }
 
     @Singleton
     @Provides
-    fun getService(): Retrofit {
+    fun providerService(): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
