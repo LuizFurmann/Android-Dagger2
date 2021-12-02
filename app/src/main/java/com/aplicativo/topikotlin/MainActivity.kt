@@ -10,16 +10,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aplicativo.topikotlin.presenter.adapter.UsuarioAdapter
 import com.aplicativo.topikotlin.databinding.ActivityMainBinding
+import com.aplicativo.topikotlin.di.ViewModelFactory
 import com.aplicativo.topikotlin.presenter.viewmodel.MainViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     lateinit var usuarioAdapter: UsuarioAdapter
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        (application as MainApplication).retrofitComponent.inject(this)
         setContentView(binding.root)
 
         initRecyclerView()
@@ -35,8 +41,8 @@ class MainActivity : AppCompatActivity() {
 
     //ViewModel
     private fun initViewModel() {
-        val viewModel: MainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.getList().observe(this, {
+        val mainViewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        mainViewModel.getList().observe(this, {
             if(it != null) {
                 usuarioAdapter.setlistData(it.items)
                 usuarioAdapter.notifyDataSetChanged()
@@ -44,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Something is wrong with connection!", Toast.LENGTH_SHORT).show()
             }
         })
-        viewModel.loadListUser()
+        mainViewModel.loadListUser()
     }
 
     //ToopBar
