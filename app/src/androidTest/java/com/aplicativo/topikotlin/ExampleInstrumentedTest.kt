@@ -1,24 +1,46 @@
 package com.aplicativo.topikotlin
 
-import androidx.test.platform.app.InstrumentationRegistry
+import android.content.res.Resources
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.junit.Rule
 
-import org.junit.Assert.*
-
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
+
+    @get:Rule
+    val actvivityMain = ActivityScenarioRule(MainActivity::class.java)
+
     @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.aplicativo.topikotlin", appContext.packageName)
+    fun showList(){
+
+        try {
+            Thread.sleep(5000) //timer
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
+        onView(withId(R.id.rvUsuarios)).perform(
+            RecyclerViewActions
+            .actionOnItemAtPosition<RecyclerView.ViewHolder>(2,click()))
+
+        onView(withId(Resources.getSystem().getIdentifier("search",
+                "id", "android"))).perform(typeText("teste"))
+
+        try {
+            Thread.sleep(5000) //timer
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
+        onView(withId(R.id.search)).perform(click())
+
     }
 }
